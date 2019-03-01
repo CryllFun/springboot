@@ -13,6 +13,6 @@ public class UserController {
     @RequestMapping("/toLogin")
     public  String toLogin(){
         System.out.println("转到登录页面");
-        return "http://localhost:8080/templates/login.html";
+        return "login";
     }
 }
