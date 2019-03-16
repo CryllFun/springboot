@@ -15,14 +15,19 @@ public class User implements Serializable {
     private  String userName;
     @Column(nullable = false)
     private String passWord;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = true,unique = true)
     private String email;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = true,unique = true)
     private String nickName;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String regTime;
 
     public User() {
+    }
+
+    public User(String userName, String passWord) {
+        this.userName = userName;
+        this.passWord = passWord;
     }
 
     public User(String userName, String email, String nickName, String passWord, String regTime) {

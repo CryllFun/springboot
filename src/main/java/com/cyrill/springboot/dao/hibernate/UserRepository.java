@@ -12,6 +12,8 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User,Long> {
     List<User> findAll();
     User findByUserName(String userName);
+//    @Query("SELECT count(u.id) from User u where  u.userName = ?1 and u.passWord = ?2")
+    User findByUserNameAndPassWord(String userName,String password);
     User findByUserNameOrEmail(String username,String email);
     //也可以通过注解的方式自定义生成sql语句
     @Modifying//涉及到删除和修改时需要此注解

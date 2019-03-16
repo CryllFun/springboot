@@ -1,18 +1,34 @@
 package com.cyrill.springboot.controller;
 
-import com.cyrill.springboot.dao.hibernate.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.cyrill.springboot.entity.User;
+import com.cyrill.springboot.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
 public class UserController {
-    @Autowired
-    private UserRepository userRepository;
-    @RequestMapping("/toLogin")
+    @Resource
+    private UserService userService;
+    @RequestMapping("/")
     public  String toLogin(){
-        System.out.println("转到登录页面");
         return "login";
+    }
+    @RequestMapping(value = "/login")
+    public  String login(Model model,String userName,String password){
+        User user = userService.findUser(userName,password);
+        if (user==null){
+            model.addAttribute("msg","登录名或密码错误！");
+            return "login";
+        }
+        model.addAttribute("user",user);
+        return "homePage";
     }
 }

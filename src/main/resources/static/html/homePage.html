@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>门户首页</title>
+</head>
+<body>
+<input type="hidden" th:value="${user.id}">
+欢迎<a th:href="@{/userInfo}" id="userName" th:text="${user.userName}"></a>来到召唤师峡谷！
+</body>
+</html>

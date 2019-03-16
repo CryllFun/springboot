@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" th:href="@{/css/login/login.css}">
+    <script type="text/javascript" th:src="@{/js/common/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login/login.js}"></script>
+    <!--<script type="text/javascript" src="/js/common/jquery-3.2.1.js"></script>-->
+    <!--<script type="text/javascript" src="/js/login/login.js"></script>-->
+</head>
+<body>
+<p class="tip">springBoot——登录注册页面</p>
+<div class="cont">
+    <div class="form sign-in">
+        <h2>欢迎 回来,</h2>
+        <form id="loginForm" action="/login" method="post">
+        <label>
+            <span>用户名或邮箱</span>
+            <input type="userName" class="errorMsg loginEnter" name="userName" id="userName" th:value="${msg}"/>
+        </label>
+        <label>
+            <span>密码</span>
+            <input type="password" name="password" class="loginEnter" id="password" />
+        </label>
+        <p class="forgot-pass" id="forgot-pass">忘记密码?</p>
+        <button type="button" class="submit" id="login">登录</button>
+        <button type="button" class="fb-btn">绑定 <span>其他账号</span></button>
+        </form>
+    </div>
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img__text m--up">
+                <h2>新建用户?</h2>
+                <p>注册助你打开新世界的大门!</p>
+            </div>
+            <div class="img__text m--in">
+                <h2>老用户?</h2>
+                <p>如果你已经注册过账户, 返回登录</p>
+            </div>
+            <div class="img__btn">
+                <span class="m--up" dir="false" id="toSign">注册</span>
+                <span class="m--in" dir="true" id="toLogin">登录</span>
+            </div>
+        </div>
+        <div class="form sign-up">
+            <h2>是时候感受家的感觉了,</h2>
+            <form id="registerForm">
+            <label>
+                <span>用户名</span>
+                <input class="signEnter" type="text" name="userName"/>
+            </label>
+            <label>
+                <span>邮箱</span>
+                <input class="signEnter" type="email" name="email" />
+            </label>
+            <label>
+                <span>密码</span>
+                <input class="signEnter" type="password" name="passWord"/>
+            </label>
+                <label>
+                    <span>确认密码</span>
+                    <input class="signEnter" type="password" name="passWord2"/>
+                </label>
+            <button type="button" class="submit signEnter" id="register" >注册</button>
+            <button type="button" class="fb-btn">加入 <span>其他平台</span></button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

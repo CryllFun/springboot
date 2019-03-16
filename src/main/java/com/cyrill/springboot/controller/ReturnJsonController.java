@@ -3,8 +3,10 @@ package com.cyrill.springboot.controller;
 import com.cyrill.springboot.entity.Properties;
 import com.cyrill.springboot.entity.User;
 import com.cyrill.springboot.dao.hibernate.UserRepository;
+import com.cyrill.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,10 +19,16 @@ public class ReturnJsonController {
     private Properties properties;
     @Autowired
     private UserRepository userRepository;
-    @RequestMapping("/hello")
-    public String index() {
-        System.out.println(properties.getTitle());
-        return properties.getTitle();
+    @Autowired
+    private UserService userService;
+    @RequestMapping("/register")
+    public String register(User user){
+        boolean success = userService.save(user);
+        if (success){
+            return "注册成功!";
+
+        }
+        return "注册失败!";
     }
     @RequestMapping("/redisTest")
     @Cacheable(value="user-key")//自动根据方法生成缓存,其中value的值就是缓存到redis中的key
