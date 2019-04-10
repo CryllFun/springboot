@@ -2,11 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>菜单栏</title>
 </head>
 <body>
-    <div th:fragment="lefter">
-        菜单
+    <div id="lefter" th:fragment="lefter">
+        <div id="left_title">菜单栏</div>
+        <ul>
+            <li><a th:href="@{/turnToUserInfo}">用户信息</a></li>
+            <li><a>其他</a></li>
+        </ul>
     </div>
 </body>
 </html>

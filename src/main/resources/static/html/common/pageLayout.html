@@ -4,13 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>页面布局</title>
+    <link rel="stylesheet" th:href="@{/css/common/pageLayout.css}"/>
+    <link rel="stylesheet" th:href="@{/css/common/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/common/jquery-ui.structure.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/common/jquery-ui.theme.min.css}"/>
+    <script type="text/javascript" th:src="@{/js/common/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/jquery-ui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/jquery.jqGrid.min.js}"></script>
 </head>
 <body class="layout-fixed">
 <div th:fragment="navbar"  class="wrapper"  role="navigation">
-    <div th:replace="header :: header">Header</div>
-    <div th:replace="lefter :: lefter">left</div>
-    <div layout:fragment="content" id="content" ></div>
-    <div th:replace="footer :: footer">footer</div>
+    <div th:replace="common/header :: header">Header</div>
+    <div th:replace="common/lefter :: lefter">left</div>
+    <div class="container" layout:fragment="content">主页</div>
+    <div th:replace="common/footer :: footer">footer</div>
 </div>
 </body>
 </html>

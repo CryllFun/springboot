@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController//返回json格式
@@ -47,10 +51,23 @@ public class ReturnJsonController {
         session.setAttribute("uid",uid);
         return  session.getId();
     }
-    //测试jpa
-    @RequestMapping("/getUser")
-    public User japTest(){
-        User user =  userRepository.findByEmail("bb@qq.com");
-        return  user;
+    @RequestMapping("/getUserInfo")
+    public Map<String,Object> getUserInfo(long id, String action){
+        Map<String,Object> map = new HashMap<>();
+        switch (action){
+            case "self":
+                User user =  userRepository.findById(id);
+                map.put("user",user);
+                break;
+            case "allUser":
+                List<User> list = userRepository.findAll();
+                map.put("rows",list);
+                map.put("total",1);
+                map.put("page",1);
+                map.put("records",10);
+        }
+
+        return  map;
     }
+
 }

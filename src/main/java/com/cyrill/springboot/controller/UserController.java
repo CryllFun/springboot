@@ -1,16 +1,15 @@
 package com.cyrill.springboot.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.cyrill.springboot.entity.User;
 import com.cyrill.springboot.service.UserService;
+import org.apache.catalina.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
@@ -18,17 +17,23 @@ public class UserController {
     @Resource
     private UserService userService;
     @RequestMapping("/")
-    public  String toLogin(){
+    public  String toLogin(HttpSession session){
+        session.removeAttribute("user");
         return "login";
     }
     @RequestMapping(value = "/login")
-    public  String login(Model model,String userName,String password){
+    public  String login(Model model, String userName, String password, HttpServletRequest req){
         User user = userService.findUser(userName,password);
+        HttpSession session = req.getSession();
         if (user==null){
             model.addAttribute("msg","登录名或密码错误！");
             return "login";
         }
-        model.addAttribute("user",user);
+        session.setAttribute("user",user);
         return "homePage";
+    }
+    @RequestMapping(value = "/turnToUserInfo")
+    public String getAllUser(){
+        return "userManage";
     }
 }
