@@ -28,5 +28,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Transactional(timeout = 10)//查询超时的设置
     @Query("select u from User u where u.email = ?1")
     User findByEmail(String email);
-    User findById(long id);
+    User findUserById(Long id);
 }

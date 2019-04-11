@@ -10,8 +10,8 @@ import java.util.List;
 @Component
 public class Result {
     private Object obj;
-    private List<Object> list;
-    private List<Object> rows;
+    private List<?> list;
+    private List<?> rows;
     private int page;
     private int size;
     private int total;
@@ -35,10 +35,6 @@ public class Result {
         return records;
     }
 
-    public Page getPager() {
-        return pager;
-    }
-
     /**
      * 支持sql分页
      * @param pager
@@ -57,9 +53,11 @@ public class Result {
      * @param pageIndex
      * @param pageSize
      */
-    public void setList(List<Object> list, int pageIndex, int pageSize) {
-        this.page = pageIndex==0?1:pageIndex;
-        this.size = pageSize==0?10:pageSize;
+    public void listToPage(List<?> list, String pageIndex, String pageSize) {
+        int a = NumberUtil.toInt(pageIndex);
+        int b = NumberUtil.toInt(pageSize);
+        this.page = a==0?1:a;
+        this.size = b==0?10:b;
         this.list = list==null?new ArrayList<>():list;
         this.records = this.list.size();
         this.total = records==0?0:(int) Math.ceil((double) records/this.size);
@@ -97,5 +95,9 @@ public class Result {
 
     public void setObj(Object obj) {
         this.obj = obj;
+    }
+
+    public List<?> getRows() {
+        return rows;
     }
 }
