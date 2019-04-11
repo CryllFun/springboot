@@ -30,10 +30,6 @@ public class UserController {
             return "login";
         }
         session.setAttribute("user",user);
-        return "homePage";
-    }
-    @RequestMapping(value = "/turnToUserInfo")
-    public String getAllUser(){
-        return "userManage";
+        return "homepage";
     }
 }
