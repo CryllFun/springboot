@@ -1,10 +1,12 @@
-package com.cyrill.springboot.dao.mybatis.mapper.fun1;
+package com.cyrill.springboot.dao.mapper.donation;
 
 import com.cyrill.springboot.entity.User;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface UserMapper {
     @Select("select * from user")//select是查询类的注解，所有的查询均使用这个
     @Results({
@@ -30,4 +32,6 @@ public interface UserMapper {
 
     @Delete("DELETE FROM users WHERE id =#{id}")
     void delete(Long id);
+    @Select("SELECT * FROM USER WHERE USERNAME = #{userName}# AND PASSWORD = #{password}#")
+    User findUserByPass(String userName,String password);
 }

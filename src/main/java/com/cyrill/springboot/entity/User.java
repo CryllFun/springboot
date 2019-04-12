@@ -1,11 +1,9 @@
 package com.cyrill.springboot.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 @Entity
+@Table(name = "t_user")
 public class User implements Serializable {
     //    不映射成列的字段得加@Transient注解,不加注解也会映射成列
     @Id
